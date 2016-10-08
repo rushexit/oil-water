@@ -1,0 +1,12 @@
+[1]ODETTE:: This is the first line in the script.
+[0]PANG:: This is the second line in the script. Don't interrupt!
+[1]ODETTE:: Seems to be working so far.
+[2]PANG:: I'm speaking a new language! Don't interrupt still...
+[1]ODETTE:: wat.
+[0]PANG:: Okay, now interrupt me if you can.
+[0]ODETTE:[R1]: This is the hasty response! Slow down, buddy!
+[0]ODETTE:[R2]: This is the second fastest response.
+[2]ODETTE:[R3]: This is the second slowest response. But read all weird.
+[0]ODETTE:[R4]: This is the slow-poke response.
+[1]ODETTE:: This is the end.
+---
