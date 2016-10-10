@@ -175,10 +175,11 @@ def scriptHandler(scriptFile):
 			charNameLength = len(charName)
 			isResponseChecker = len(lineData[3:].split(":")[1])
 			isResponse = False
-			nextLine = scriptData[currentLineNumber + 1].strip()
-			nextLineResponseChecker = len(nextLine[3:].split(":")[1]) # need to change to if statement, if next line is last line don't check.
 			nextLineIsResponse = False
 			playerResponded = False
+			if (currentLineNumber + 1) < lineCount:
+				nextLine = scriptData[currentLineNumber + 1].strip()
+				nextLineResponseChecker = len(nextLine[3:].split(":")[0]) # need to change to if statement, if next line is last line don't check.
 			if nextLineResponseChecker > 0:
 				print "Next line is a response!"
 			if isResponseChecker > 0:
