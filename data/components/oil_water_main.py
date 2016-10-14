@@ -225,6 +225,6 @@ def scriptHandler(scriptFile):
 		elif lineType == "---":
 			print "END"
 			print "Response Lines:\n" + responseLines
-			print "Testing line isolation: " + responseLines[2]
+			print "Testing line isolation: " + responseLines.split("\n")[2]
 			break
 	script.close()
