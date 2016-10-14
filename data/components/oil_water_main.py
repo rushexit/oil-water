@@ -163,6 +163,7 @@ def scriptHandler(scriptFile):
 	scriptData = script.readlines()						# reads the imported script text file and stores it.	
 	currentLineNumber = 0								# current line number within script.
 	lineCount = sum(1 for _ in scriptData)
+	responseLines = ''
 	for rawLine in range(lineCount):
 		line = ''
 		lineLength = len(scriptData[currentLineNumber])
@@ -180,23 +181,26 @@ def scriptHandler(scriptFile):
 			if (currentLineNumber + 1) < lineCount:
 				nextLine = scriptData[currentLineNumber + 1].strip()
 				if nextLine != "---":
-					nextLineResponseChecker = len(nextLine[3:].split(":")[1]) # need to change to if statement, if next line is last line don't check.
+					nextLineResponseChecker = len(nextLine[3:].split(":")[1])
 					print "Length of next line response checker: " + str(nextLineResponseChecker)
 			if nextLineResponseChecker > 0:
 				print "Next line is a response!"
+				nextLineIsResponse = True
 			if isResponseChecker > 0:
 				isResponse = True
-				line += lineData[(6 + charNameLength):]
+				line += lineData[(10 + charNameLength):]
+				responseLines += line + "\n"
 				print "isResponse: " + str(isResponse) 
 			else:
 				line += lineData[(5 + charNameLength):]
+				nextLineIsResponse = False
 			print "CHARACTER SPEAKING: " + charName
 			print "CHARACTER NAME LENGTH: " + str(charNameLength)
 			print "Current line number: " + str(currentLineNumber)
 			print "Line type: " + str(lineType)
 			print "Line: " + str(line)
 			print "Line length: " + str(lineLength)
-			if lineType == "[0]" and isResponse == False:
+			if lineType == "[0]":
 				beatTime = npc_line_reading(line, charName)
 				if beatTime <= 1:
 					print "You're too hasty!"
@@ -206,9 +210,9 @@ def scriptHandler(scriptFile):
 					print "You're a thinker!"
 				else:
 					print "You're a slow-poke."
-			elif lineType == "[1]" and isResponse == False:
+			elif lineType == "[1]":
 				player_line_reading(line, charName)
-			elif lineType == "[2]" and isResponse == False:
+			elif lineType == "[2]":
 				beatTime = npc_strange_line_reading(line, charName)
 				if beatTime <= 1:
 					print "You're too hasty!"
@@ -220,5 +224,7 @@ def scriptHandler(scriptFile):
 					print "You're a slow-poke."
 		elif lineType == "---":
 			print "END"
+			print "Response Lines:\n" + responseLines
+			print "Testing line isolation: " + responseLines[2]
 			break
 	script.close()
