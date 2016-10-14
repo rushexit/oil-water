@@ -190,10 +190,13 @@ def scriptHandler(scriptFile):
 				isResponse = True
 				line += lineData[(10 + charNameLength):]
 				responseLines += line + "\n"
-				print "isResponse: " + str(isResponse) 
+				print "isResponse: " + str(isResponse)
+				print "Response Lines:\n" + responseLines
+				print "Testing line isolation: " + responseLines.split("\n")[currentLineNumber]
 			else:
 				line += lineData[(5 + charNameLength):]
 				nextLineIsResponse = False
+				responseLines = ''
 			print "CHARACTER SPEAKING: " + charName
 			print "CHARACTER NAME LENGTH: " + str(charNameLength)
 			print "Current line number: " + str(currentLineNumber)
@@ -224,7 +227,5 @@ def scriptHandler(scriptFile):
 					print "You're a slow-poke."
 		elif lineType == "---":
 			print "END"
-			print "Response Lines:\n" + responseLines
-			print "Testing line isolation: " + responseLines.split("\n")[2]
 			break
 	script.close()
