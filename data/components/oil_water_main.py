@@ -186,10 +186,10 @@ def scriptHandler(scriptFile):
 			if nextLineResponseChecker > 0:
 				print "Next line is a response!"
 				nextLineIsResponse = True
+				responseLines += nextline + "\n"
 			if isResponseChecker > 0:
 				isResponse = True
 				line += lineData[(10 + charNameLength):]
-				responseLines += line + "\n"
 				print "isResponse: " + str(isResponse)
 				print "Response Lines:\n" + responseLines
 				print "Testing line isolation: " + responseLines.split("\n")[currentLineNumber]
