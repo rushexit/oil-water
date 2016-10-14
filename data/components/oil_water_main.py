@@ -211,7 +211,7 @@ def scriptHandler(scriptFile):
 					print "You kind of thought about it."
 				elif 3 < beatTime <= 5 and nextLineIsResponse == True:
 					print "You're a thinker!"
-				elif and nextLineIsResponse == True:
+				elif nextLineIsResponse == True:
 					print "You're a slow-poke."
 			elif lineType == "[1]":
 				player_line_reading(line, charName)
