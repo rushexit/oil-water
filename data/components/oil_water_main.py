@@ -205,13 +205,13 @@ def scriptHandler(scriptFile):
 			print "Line length: " + str(lineLength)
 			if lineType == "[0]":
 				beatTime = npc_line_reading(line, charName)
-				if beatTime <= 1:
-					print "You're too hasty!"
-				elif 1 < beatTime <= 3:
+				if beatTime <= 1 and nextLineIsResponse == True:
+					print responseLines[1]
+				elif 1 < beatTime <= 3 and nextLineIsResponse == True:
 					print "You kind of thought about it."
-				elif 3 < beatTime <= 5:
+				elif 3 < beatTime <= 5 and nextLineIsResponse == True:
 					print "You're a thinker!"
-				else:
+				elif and nextLineIsResponse == True:
 					print "You're a slow-poke."
 			elif lineType == "[1]":
 				player_line_reading(line, charName)
