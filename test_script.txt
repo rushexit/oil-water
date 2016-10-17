@@ -10,3 +10,13 @@
 [0]ODETTE:[R4]: This is the slow-poke response.
 [1]ODETTE:: This is the end.
 ---
+[1]ODETTE:: This is the next line after the break.
+[0]PANG:: Did it work?
+[1]ODETTE:[R1]: Shut up, I'm thinking!
+[1]ODETTE:[R2]: Hopefully it did.
+[1]ODETTE:[R3]: If you're seeing this it did!
+[1]ODETTE:[R4]: I don't know, homie. I just don't know.
+[2]PANG:: Don't get sassy with me, buddy.
+[2]ODETTE:: I speak the language, bro!
+[0]PANG:: Well.
+---
