@@ -156,7 +156,6 @@ def scriptHandler(scriptFile):
 	responseLines = ''
 	response = ''
 	playerResponded = False
-	breakReached = False
 	print "Total line count: " + str(lineCount) + "\n"  
 	for rawLine in range(lineCount):
 		line = ''
