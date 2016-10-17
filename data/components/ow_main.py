@@ -252,10 +252,11 @@ def scriptHandler(scriptFile):
 					playerResponded = False
 			elif line == "---":
 				breakReached = True
-				screen.blit(bgImage, (0, 0))
-				scriptBreak(1)
-				if scriptBreak(1) == 0:
-				breakReached = False
+				while breakReached == True:
+					screen.blit(bgImage, (0, 0))
+					scriptBreak(1)
+					if scriptBreak(1) == 0:
+					breakReached = False
 			currentLineNumber += 1
 			nextLineNumber += 1
 			print "CHARACTER SPEAKING: " + charName
