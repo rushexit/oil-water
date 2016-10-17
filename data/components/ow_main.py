@@ -156,6 +156,7 @@ def scriptHandler(scriptFile):
 	responseLines = ''
 	response = ''
 	playerResponded = False
+	breakReached = False
 	print "Total line count: " + str(lineCount) + "\n"  
 	for rawLine in range(lineCount):
 		line = ''
@@ -213,8 +214,6 @@ def scriptHandler(scriptFile):
 				elif 5 < beatTime and nextLineIsResponse == True and playerResponded == False:
 					responseChosen += "[R4]"
 					playerResponded = True
-			elif lineType == "---":
-				print "END OF SCRIPT."
 			if responseChosen == "[R1]":
 				responseData = responseLines.split("\n")[0]
 				response = responseData.split(":")[2]
