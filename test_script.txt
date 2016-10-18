@@ -12,10 +12,10 @@
 ---
 [1]ODETTE:: This is the next line after the break.
 [0]PANG:: Did it work?
-[1]ODETTE:[R1]: Shut up, I'm thinking!
-[1]ODETTE:[R2]: Hopefully it did.
-[1]ODETTE:[R3]: If you're seeing this it did!
-[1]ODETTE:[R4]: I don't know, homie. I just don't know.
+[1]ODETTE:[R1]: Shut up, I'm thinking! First response.
+[1]ODETTE:[R2]: If you're seeing this it did! Second response.
+[1]ODETTE:[R3]: Hopefully it did. Third response.
+[1]ODETTE:[R4]: I don't know, homie. I just don't know. Last response.
 [2]PANG:: Don't get sassy with me, buddy.
 [2]ODETTE:: I speak the language, bro!
 [0]PANG:: Well.
