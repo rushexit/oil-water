@@ -254,15 +254,14 @@ def scriptHandler(scriptFile):
 				if responseLineType == "[0]":
 					npc_line_reading(response, responseName)
 					playerResponded = False
-					response = ''
 				if responseLineType == "[1]":
 					player_line_reading(response, responseName)
 					playerResponded = False
-					response = ''
 				if responseLineType ==  "[2]":
 					npc_strange_line_reading(response, responseName)
 					playerResponded = False
-					response = ''
+			currentLineNumber += 1
+			nextLineNumber += 1
 			print "CHARACTER SPEAKING: " + charName
 			print "CURRENT LINE NUMBER: " + str(currentLineNumber)
 			print "LINE TYPE: " + lineType
@@ -270,11 +269,5 @@ def scriptHandler(scriptFile):
 			print "BEATTIME: " + str(beatTime)
 			print "NEXT LINE IS RESPONSE: " + str(nextLineIsResponse)
 			print "RESPONSE CHOSEN: " + responseChosen
+			print "RESPONSE LINE: " + response
 			print "NEXT LINE: " + nextLine + "\n"
-		if nextLineNumber > lineCount:
-			break
-		else:
-			currentLineNumber += 1
-			nextLineNumber += 1
-
-		
