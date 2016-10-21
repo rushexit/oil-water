@@ -167,6 +167,7 @@ def scriptHandler(scriptFile):
 	breakReached = False
 	print "Total line count: " + str(lineCount) + "\n"
 	while breakReached == False:
+		#if nextLineNumber =< lineCount:
 		for rawLine in range(lineCount):
 			line = ''
 			lineLength = len(scriptData[currentLineNumber])
