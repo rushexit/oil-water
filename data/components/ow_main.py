@@ -178,6 +178,7 @@ def scriptHandler(scriptFile):
 				nextLineIsResponse = False
 				nextLineCharName = ''
 				nextLineType = ''
+				responseChosen = ''
 				if (currentLineNumber + 1) < lineCount:
 					nextLine += scriptData[currentLineNumber + 1].strip()
 					nextLineType += nextLine[:3]
@@ -190,7 +191,6 @@ def scriptHandler(scriptFile):
 							nextLineIsResponse = True
 				if lineType != "---" and playerResponded == False:
 					line += lineData.split(":")[2]
-					responseChosen = ''
 					isResponseChecker = len(lineData[3:].split(":")[1])
 					isResponse = False
 					if isResponseChecker > 0:
@@ -225,42 +225,44 @@ def scriptHandler(scriptFile):
 						elif 5 < beatTime and nextLineIsResponse == True and playerResponded == False:
 							responseChosen += "[R4]"
 							playerResponded = True
-					elif lineType == "---":
-						print "BREAK REACHED:"
-						breakReached = True
-						breakReached(1)
-						if breakReached(1) == 0:
-							breakReached = False
-					if responseChosen == "[R1]":
-						responseData = responseLines.split("\n")[0]
-						response = responseData.split(":")[2]
-						responseName = responseData[3:].split(":")[0]
-						responseLineType = responseData[:3]
-					elif responseChosen == "[R2]":
-						responseData = responseLines.split("\n")[1]
-						response = responseData.split(":")[2]
-						responseName = responseData[3:].split(":")[0]
-						responseLineType = responseData[:3]
-					elif responseChosen == "[R3]":
-						responseData = responseLines.split("\n")[2]
-						response = responseData.split(":")[2]
-						responseName = responseData[3:].split(":")[0]
-						responseLineType = responseData[:3]
-					elif responseChosen == "[R4]":
-						responseData = responseLines.split("\n")[3]
-						response = responseData.split(":")[2]
-						responseName = str(responseData[3:].split(":")[0])
-						responseLineType = responseData[:3]
-				elif playerResponded == True:
+				elif lineType == "---":
+					breakReached = True
+					scriptBreak(1)
+					if scriptBreak(1) == 0:
+						breakReached = False
+				if responseChosen == "[R1]":
+					responseData = responseLines.split("\n")[0]
+					response = responseData.split(":")[2]
+					responseName = responseData[3:].split(":")[0]
+					responseLineType = responseData[:3]
+				elif responseChosen == "[R2]":
+					responseData = responseLines.split("\n")[1]
+					response = responseData.split(":")[2]
+					responseName = responseData[3:].split(":")[0]
+					responseLineType = responseData[:3]
+				elif responseChosen == "[R3]":
+					responseData = responseLines.split("\n")[2]
+					response = responseData.split(":")[2]
+					responseName = responseData[3:].split(":")[0]
+					responseLineType = responseData[:3]
+				elif responseChosen == "[R4]":
+					responseData = responseLines.split("\n")[3]
+					response = responseData.split(":")[2]
+					responseName = str(responseData[3:].split(":")[0])
+					responseLineType = responseData[:3]
+				if playerResponded == True:
 					if responseLineType == "[0]":
-						npc_line_reading(response, responseName)
+						npc_line_reading(response.strip(), responseName)
 						playerResponded = False
+						response = ''
 					if responseLineType == "[1]":
-						player_line_reading(response, responseName)
+						player_line_reading(response.strip(), responseName)
 						playerResponded = False
+						response = ''
 					if responseLineType ==  "[2]":
-						npc_strange_line_reading(response, responseName)
+						npc_strange_line_reading(response.strip(), responseName)
 						playerResponded = False
+						response = ''
 				currentLineNumber += 1
 				nextLineNumber += 1
 				print "CHARACTER SPEAKING: " + charName
@@ -272,5 +274,6 @@ def scriptHandler(scriptFile):
 				print "RESPONSE CHOSEN: " + responseChosen
 				print "RESPONSE LINE: " + response
 				print "NEXT LINE: " + nextLine + "\n"
+				print "BREAK REACHED: " + str(breakReached) + "\n"
 		else:
 			break
