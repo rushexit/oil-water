@@ -148,7 +148,7 @@ def npc_strange_line_reading(text, name):
 	return beatTime
 
 def scriptBreak(status):
-	screen.fill(white)
+	screen.blit(bgImage, (0, 0))
 	pygame.display.update()
 	print "SCRIPTBREAK FUNCTION RUN"
 	while status == 1:
@@ -161,7 +161,6 @@ def scriptHandler(scriptFile):
 	currentLineNumber = 0
 	nextLineNumber = currentLineNumber + 1
 	lineCount = sum(1 for _ in scriptData)
-	responseLines = ''
 	response = ''
 	playerResponded = False
 	breakReached = False
@@ -179,6 +178,7 @@ def scriptHandler(scriptFile):
 				nextLineCharName = ''
 				nextLineType = ''
 				responseChosen = ''
+				responseLines = ''
 				if (currentLineNumber + 1) < lineCount:
 					nextLine += scriptData[currentLineNumber + 1].strip()
 					nextLineType += nextLine[:3]
@@ -270,6 +270,7 @@ def scriptHandler(scriptFile):
 				print "LINE: " + line
 				print "BEATTIME: " + str(beatTime)
 				print "NEXT LINE IS RESPONSE: " + str(nextLineIsResponse)
+				print "PLAYER RESPONDED: " + str(playerResponded)
 				print "RESPONSE CHOSEN: " + responseChosen
 				print "RESPONSE LINE: " + response
 				print "NEXT LINE: " + nextLine + "\n"
