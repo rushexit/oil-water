@@ -227,7 +227,6 @@ def scriptHandler(scriptFile):
 							playerResponded = True
 				elif lineType == "---":
 					breakReached = True
-					scriptBreak(1)
 					if scriptBreak(1) == 0:
 						breakReached = False
 				if responseChosen == "[R1]":
