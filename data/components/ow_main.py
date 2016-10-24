@@ -20,11 +20,39 @@ pygame.display.set_caption('OIL//WATER')
 
 # game loop to keep the game running.
 def gameLoop():
+	gameRunning = True
 	while gameRunning == True:
 		if pygame.event.get(pygame.QUIT):
 			pygame.quit()
 			sys.exit()
 		pygame.display.update()
+
+# heartTimer, general timing function for .
+def heartTimer(stopValue, timerEvent):
+	beatTime = 0
+	heartStart = time.time()
+	screen.blit(bgImage, (0, 0))
+	stopValueTriggered = False
+	responseChosen = ''
+	while stopValueTriggered == False:
+		for event in pygame.event.get():
+			if event.type == stopValue:
+				heartStop = time.time()
+				beatTime += heartStop - heartStart
+				print "IT WORKED."
+				print "BEATTIME: " + str(beatTime)
+				stopValueTriggered = True
+				pygame.quit()
+				sys.exit()
+	if beatTime <= 1:
+		responseChosen += "[R1]"
+	elif 1 < beatTime <= 3:
+		responseChosen += "[R2]"
+	elif 3 < beatTime <= 5:
+		responseChosen += "[R3]"
+		timerEvent
+	elif 5 < beatTime:
+		responseChosen += "[R4]"
 
 # function that displays text, handles interrupt of line and returns beatTime.
 def npc_line_reading(text, name):
