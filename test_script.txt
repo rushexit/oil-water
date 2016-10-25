@@ -12,10 +12,24 @@
 ---
 [1]ODETTE:: This is the next line after the break.
 [0]PANG:: Did it work?
-[1]ODETTE:[R1]: Shut up, I'm thinking! First response.
-[1]ODETTE:[R2]: If you're seeing this it did! Second response.
-[1]ODETTE:[R3]: Hopefully it did. Third response.
-[1]ODETTE:[R4]: I don't know, homie. I just don't know. Last response.
+[1]ODETTE:[R1]: Shut up, I'm thinking!
+[1]ODETTE:[R2]: If you're seeing this it did!
+[1]ODETTE:[R3]: Hopefully it did.
+[1]ODETTE:[R4]: I don't know, homie. I just don't know.
 [2]PANG:: Don't get sassy with me, buddy.
 [2]ODETTE:: I speak the language, bro!
 [0]PANG:: Well.
+---
+[1]ODETTE:: So... Now what?
+[1]PANG:: Now we wait.
+[1]ODETTE:: What are we waiting for?
+[0]PANG:: You'll know when it happens.
+[0]ODETTE:[R1]: I don't have time for this, Pang!
+[0]ODETTE:[R2]: Why can't you just give me a straight answer?
+[0]ODETTE:[R3]: How long should we wait then?
+[0]ODETTE:[R4]: Wait. Did you hear that?
+[1]PANG:[R1]: Then make time, damn it! This is important.
+[1]PANG:[R2]: I prefer curvy answers.
+[2]PANG:[R3]: ... Silence is golden.
+[1]PANG:[R4]: I don't hear anything...
+---
