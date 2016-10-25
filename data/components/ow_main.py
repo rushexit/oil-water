@@ -211,7 +211,7 @@ def scriptHandler(scriptFile):
 					nextLine += scriptData[currentLineNumber + 1].strip()
 					nextLineType += nextLine[:3]
 					if nextLineType != "---":
-						if len(nextLine[3:].split(":")[1]) > 0 and len(responseLines) == 0:
+						if len(nextLine[3:].split(":")[1]) == "[R1]" and len(responseLines) == 0:
 							responseLines += nextLine + "\n"
 							responseLines += scriptData[nextLineNumber + 1].strip() + "\n"
 							responseLines += scriptData[nextLineNumber + 2].strip() + "\n"
