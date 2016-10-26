@@ -207,7 +207,6 @@ def scriptHandler(scriptFile):
 				nextLineType = ''
 				responseChosen = ''
 				responseLines = ''
-				print "\n" + "RESPONSE LINES: " + responseLines + "\n"
 				if (currentLineNumber + 1) < lineCount:
 					nextLine += scriptData[currentLineNumber + 1].strip()
 					nextLineType += nextLine[:3]
@@ -218,14 +217,13 @@ def scriptHandler(scriptFile):
 							responseLines += scriptData[nextLineNumber + 2].strip() + "\n"
 							responseLines += scriptData[nextLineNumber + 3].strip() + "\n"
 							nextLineIsResponse = True
-							print "\n" + "RESPONSE LINES: " + responseLines + "\n"
 				if lineType != "---" and playerResponded == False:
 					line += lineData.split(":")[2]
 					isResponseChecker = len(lineData[3:].split(":")[1])
 					isResponse = False
 					if isResponseChecker > 0:
 						isResponse = True
-					if lineType == "[0]" and isResponse == False: # change this to len of response lines == 0, so it won't exclude responses that are back to back.
+					if lineType == "[0]" and isResponse == False:
 						beatTime = npc_line_reading(line, charName)
 						if beatTime <= 1 and nextLineIsResponse == True:
 							responseChosen += "[R1]"
@@ -282,16 +280,16 @@ def scriptHandler(scriptFile):
 				if playerResponded == True:
 					if responseLineType == "[0]":
 						npc_line_reading(response.strip(), responseName)
-						playerResponded = False
 						response = ''
+						playerResponded = False
 					if responseLineType == "[1]":
 						player_line_reading(response.strip(), responseName)
-						playerResponded = False
 						response = ''
+						playerResponded = False
 					if responseLineType ==  "[2]":
 						npc_strange_line_reading(response.strip(), responseName)
-						playerResponded = False
 						response = ''
+						playerResponded = False
 				currentLineNumber += 1
 				nextLineNumber += 1
 				print "CHARACTER SPEAKING: " + charName
