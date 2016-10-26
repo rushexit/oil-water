@@ -207,23 +207,25 @@ def scriptHandler(scriptFile):
 				nextLineType = ''
 				responseChosen = ''
 				responseLines = ''
+				print "\n" + "RESPONSE LINES: " + responseLines + "\n"
 				if (currentLineNumber + 1) < lineCount:
 					nextLine += scriptData[currentLineNumber + 1].strip()
 					nextLineType += nextLine[:3]
 					if nextLineType != "---":
-						if len(nextLine[3:].split(":")[1]) == "[R1]" and len(responseLines) == 0:
+						if nextLine[3:].split(":")[1] == "[R1]" and len(responseLines) == 0:
 							responseLines += nextLine + "\n"
 							responseLines += scriptData[nextLineNumber + 1].strip() + "\n"
 							responseLines += scriptData[nextLineNumber + 2].strip() + "\n"
 							responseLines += scriptData[nextLineNumber + 3].strip() + "\n"
 							nextLineIsResponse = True
+							print "\n" + "RESPONSE LINES: " + responseLines + "\n"
 				if lineType != "---" and playerResponded == False:
 					line += lineData.split(":")[2]
 					isResponseChecker = len(lineData[3:].split(":")[1])
 					isResponse = False
 					if isResponseChecker > 0:
 						isResponse = True
-					if lineType == "[0]" and isResponse == False:
+					if lineType == "[0]" and isResponse == False: # change this to len of response lines == 0, so it won't exclude responses that are back to back.
 						beatTime = npc_line_reading(line, charName)
 						if beatTime <= 1 and nextLineIsResponse == True:
 							responseChosen += "[R1]"
@@ -241,16 +243,16 @@ def scriptHandler(scriptFile):
 						beatTime = player_line_reading(line, charName)
 					elif lineType == "[2]" and isResponse == False:
 						beatTime = npc_strange_line_reading(line, charName)
-						if beatTime <= 1 and nextLineIsResponse == True and playerResponded == False:
+						if beatTime <= 1 and nextLineIsResponse == True:
 							responseChosen += "[R1]"
 							playerResponded = True
-						elif 1 < beatTime <= 3 and nextLineIsResponse == True and playerResponded == False:
+						elif 1 < beatTime <= 3 and nextLineIsResponse == True:
 							responseChosen += "[R2]"
 							playerResponded = True
-						elif 3 < beatTime <= 5 and nextLineIsResponse == True and playerResponded == False:
+						elif 3 < beatTime <= 5 and nextLineIsResponse == True:
 							responseChosen += "[R3]"
 							playerResponded = True
-						elif 5 < beatTime and nextLineIsResponse == True and playerResponded == False:
+						elif 5 < beatTime and nextLineIsResponse == True:
 							responseChosen += "[R4]"
 							playerResponded = True
 				elif lineType == "---":
