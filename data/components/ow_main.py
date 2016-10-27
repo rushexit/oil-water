@@ -277,19 +277,22 @@ def scriptHandler(scriptFile):
 					response = responseData.split(":")[2]
 					responseName = str(responseData[3:].split(":")[0])
 					responseLineType = responseData[:3]
-				if playerResponded == True:
+				if playerResponded == True and isResponse == True:
 					if responseLineType == "[0]":
 						npc_line_reading(response.strip(), responseName)
 						response = ''
 						playerResponded = False
+						isResponse = False
 					if responseLineType == "[1]":
 						player_line_reading(response.strip(), responseName)
 						response = ''
 						playerResponded = False
+						isResponse = False
 					if responseLineType ==  "[2]":
 						npc_strange_line_reading(response.strip(), responseName)
 						response = ''
 						playerResponded = False
+						isResponse = False
 				currentLineNumber += 1
 				nextLineNumber += 1
 				print "CHARACTER SPEAKING: " + charName
