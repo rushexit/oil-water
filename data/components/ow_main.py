@@ -217,13 +217,14 @@ def scriptHandler(scriptFile):
 							responseLines += scriptData[nextLineNumber + 2].strip() + "\n"
 							responseLines += scriptData[nextLineNumber + 3].strip() + "\n"
 							nextLineIsResponse = True
+							print "\n" + "RESPONSE LINES : " + responseLines + "\n"
 				if lineType != "---" and playerResponded == False:
 					line += lineData.split(":")[2]
 					isResponseChecker = len(lineData[3:].split(":")[1])
 					isResponse = False
 					if isResponseChecker > 0:
 						isResponse = True
-					if lineType == "[0]" and isResponse == False:
+					if (lineType == "[0]" and isResponse == False) or nextLineIsResponse == True: #almost
 						beatTime = npc_line_reading(line, charName)
 						if beatTime <= 1 and nextLineIsResponse == True:
 							responseChosen += "[R1]"
@@ -237,9 +238,9 @@ def scriptHandler(scriptFile):
 						elif 5 < beatTime and nextLineIsResponse == True:
 							responseChosen += "[R4]"
 							playerResponded = True
-					elif lineType == "[1]" and isResponse == False:
+					elif (lineType == "[1]" and isResponse == False) or nextLineIsResponse == True: #almost
 						beatTime = player_line_reading(line, charName)
-					elif lineType == "[2]" and isResponse == False:
+					elif (lineType == "[2]" and isResponse == False) or nextLineIsResponse == True: #almost but also needs to exclude responses
 						beatTime = npc_strange_line_reading(line, charName)
 						if beatTime <= 1 and nextLineIsResponse == True:
 							responseChosen += "[R1]"
@@ -277,22 +278,16 @@ def scriptHandler(scriptFile):
 					response = responseData.split(":")[2]
 					responseName = str(responseData[3:].split(":")[0])
 					responseLineType = responseData[:3]
-				if playerResponded == True and isResponse == True:
+				if playerResponded == True:
 					if responseLineType == "[0]":
 						npc_line_reading(response.strip(), responseName)
 						response = ''
-						playerResponded = False
-						isResponse = False
 					if responseLineType == "[1]":
 						player_line_reading(response.strip(), responseName)
 						response = ''
-						playerResponded = False
-						isResponse = False
 					if responseLineType ==  "[2]":
 						npc_strange_line_reading(response.strip(), responseName)
 						response = ''
-						playerResponded = False
-						isResponse = False
 				currentLineNumber += 1
 				nextLineNumber += 1
 				print "CHARACTER SPEAKING: " + charName
