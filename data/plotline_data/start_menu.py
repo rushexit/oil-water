@@ -5,12 +5,28 @@ white = (255, 255, 255)
 red = (255, 0, 0)
 
 pygame.init()
+
 display_width = 800
 display_height = 500
 screen = pygame.display.set_mode((display_width, display_height))
 bgImage = pygame.image.load("spacetrees.png")
-menuButtonAdjust = 0
+
 font = pygame.font.Font("freesansbold.ttf", 14)
+menuButtonAdjust = 0
+
+def start_new_game():
+	print "starting a new game!"
+
+def load_game():
+	print "loading an old game!"
+
+def quit_game():
+	print "quitting the game!"
+	pygame.quit()
+	sys.exit()
+
+#menuItems = {"new game" : start_new_game(), "load game" : load_game(), "quit" : quit_game()}	
+	
 mainMenu = pygame.Surface((800, 50))
 mainMenu.fill(white)
 newGameButton = pygame.Surface((display_width /3 , 50))
@@ -43,7 +59,8 @@ class mainMenuButtons:
 		screen.blit(self.Button, (menuButtonAdjust, (display_height / 1.35)))
 		screen.blit(textSurface, (menuButtonAdjust, (display_height / 1.35)))
 		menuButtonAdjust += self.Button.get_width()
-
+	def selectButton(self, key):
+		
 # write something so that if selectionPos = 0
 # change the appearence of the menu item you're hovered over
 

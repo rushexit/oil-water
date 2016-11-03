@@ -1,4 +1,4 @@
-import sys, pygame, data.components.ow_main, OpenGL
+import sys, pygame, data.components.ow_main, OpenGL, data.plotline_data.start_menu
 
 # START SCREEN
 
@@ -6,4 +6,5 @@ import sys, pygame, data.components.ow_main, OpenGL
 
 # ACT I
 ## SCENE I
+
 data.components.ow_main.scriptHandler("test_script.txt")

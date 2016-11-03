@@ -10,8 +10,7 @@ RED = (255, 0, 0)
 BLACK = (0, 0, 0)
  
 class MenuItem(pygame.font.Font):
-    def __init__(self, text, font=None, font_size=30,
-                 font_color=WHITE, (pos_x, pos_y)=(0, 0)):
+    def __init__(self, text, font=None, font_size=30, font_color=WHITE, (pos_x, pos_y)=(0, 0)):
  
         pygame.font.Font.__init__(self, font, font_size)
         self.text = text
