@@ -10,6 +10,7 @@ display_height = 500
 screen = pygame.display.set_mode((display_width, display_height))
 bgImage = pygame.image.load("spacetrees.png")
 menuButtonAdjust = 0
+font = pygame.font.Font("freesansbold.ttf", 14)
 mainMenu = pygame.Surface((800, 50))
 mainMenu.fill(white)
 newGameButton = pygame.Surface((display_width /3 , 50))
@@ -31,13 +32,16 @@ mainMenu.set_alpha(50)
 selectionPos = 0
 
 class mainMenuButtons:
-	def __init__(self):
+	def __init__(self, text):
 		global menuButtonAdjust
+		global font
+		textSurface = font.render(text, True, white)
 		self.Button = pygame.Surface((display_width / 3 , 50))
 		self.Button.fill(white)
 		pygame.Surface.convert_alpha(self.Button)
 		self.Button.set_alpha(50)
 		screen.blit(self.Button, (menuButtonAdjust, (display_height / 1.35)))
+		screen.blit(textSurface, (menuButtonAdjust, (display_height / 1.35)))
 		menuButtonAdjust += self.Button.get_width()
 
 # write something so that if selectionPos = 0
@@ -57,7 +61,7 @@ def gameLoop():
 			sys.exit()
 		pygame.display.update()
 
-newGameButton = mainMenuButtons()
-loadGameButton = mainMenuButtons()
-exitButton = mainMenuButtons()
+newGameButton = mainMenuButtons("newGameButton")
+loadGameButton = mainMenuButtons("loadGameButton")
+exitButton = mainMenuButtons("newGameButton")
 gameLoop()
