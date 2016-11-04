@@ -1,84 +1,18 @@
-import sys, pygame, OpenGL
+import sys, pygame
 
 black = (0, 0, 0)
 white = (255, 255, 255)
 red = (255, 0, 0)
 
-pygame.init()
-
-display_width = 800
-display_height = 500
-screen = pygame.display.set_mode((display_width, display_height))
-bgImage = pygame.image.load("spacetrees.png")
-
-font = pygame.font.Font("freesansbold.ttf", 14)
-menuButtonAdjust = 0
-
-def start_new_game():
-	print "starting a new game!"
-
-def load_game():
-	print "loading an old game!"
-
-def quit_game():
-	print "quitting the game!"
-	pygame.quit()
-	sys.exit()
-
-#menuItems = {"new game" : start_new_game(), "load game" : load_game(), "quit" : quit_game()}	
-	
-mainMenu = pygame.Surface((800, 50))
-mainMenu.fill(white)
-newGameButton = pygame.Surface((display_width /3 , 50))
-newGameButton.fill(white)
-loadGameButton = pygame.Surface((display_width / 3, 50))
-loadGameButton.fill(red)
-exitButton = pygame.Surface((display_width / 3, 50))
-exitButton.fill(white)
-pygame.Surface.convert_alpha(mainMenu)
-mainMenu.set_alpha(50)
-# screen.blit(bgImage, (0,0))
-# screen.blit(mainMenu, (0, (display_height / 1.35)))
-# screen.blit(newGameButton, (menuButtonAdjust, (display_height/ 1.35)))
-# menuButtonAdjust += newGameButton.get_width()
-#screen.blit(loadGameButton, (menuButtonAdjust, (display_height/ 1.35)))
-# menuButtonAdjust += exitButton.get_width()
-# screen.blit(exitButton, (menuButtonAdjust, (display_height/ 1.35)))
-
-selectionPos = 0
-
-class mainMenuButtons:
-	def __init__(self, text):
-		global menuButtonAdjust
-		global font
-		textSurface = font.render(text, True, white)
-		self.Button = pygame.Surface((display_width / 3 , 50))
-		self.Button.fill(white)
-		pygame.Surface.convert_alpha(self.Button)
-		self.Button.set_alpha(50)
-		screen.blit(self.Button, (menuButtonAdjust, (display_height / 1.35)))
-		screen.blit(textSurface, (menuButtonAdjust, (display_height / 1.35)))
-		menuButtonAdjust += self.Button.get_width()
-	def selectButton(self, key):
-		
-# write something so that if selectionPos = 0
-# change the appearence of the menu item you're hovered over
-
-# white something so that if you hit the up arrow the selectionPos
-# variable += or -= 1
-
-# also, to stop loop from continuing to run, create a variable within
-# loop that will stop when posChanged == true or something like that.
-
-def gameLoop():
-	gameRunning = True
-	while gameRunning == True:
-		if pygame.event.get(pygame.QUIT):
-			pygame.quit()
-			sys.exit()
-		pygame.display.update()
-
-newGameButton = mainMenuButtons("newGameButton")
-loadGameButton = mainMenuButtons("loadGameButton")
-exitButton = mainMenuButtons("newGameButton")
-gameLoop()
+# need a class for menuOptions
+class menuOptions(object):
+	def __init__(self, menuLabel, isSelected, menuPosition):
+		self.menuLabel = menuLabel
+		self.isSelected = isSelected
+		self.menuPosition = menuPosition
+	def setPos(self, xCoord, yCoord):
+		self.position = (xCoord, yCoord)
+zebra = menuOptions("startNewGame", False, 0)
+print zebra.menuPosition
+print zebra.menuLabel
+print zebra.isSelected
