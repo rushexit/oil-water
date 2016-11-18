@@ -1,4 +1,4 @@
-import sys, pygame, data.components.ow_main, OpenGL, data.plotline_data.start_menu
+import sys, pygame, data.components.ow_main, OpenGL
 
 # START SCREEN
 

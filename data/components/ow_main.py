@@ -182,137 +182,80 @@ def scriptBreak(status):
 	while status == 1:
 		if pygame.event.get(pygame.KEYDOWN):
 			return 0
-	
+
 def scriptHandler(scriptFile):
 	script = open(scriptFile, 'r')
 	scriptData = script.readlines()
 	currentLineNumber = 0
 	nextLineNumber = currentLineNumber + 1
 	lineCount = sum(1 for _ in scriptData)
-	response = ''
-	playerResponded = False
+	responseData = ''
+	responseLine = ''
+	responseChosen = ''
+	responseLines = ''
 	breakReached = False
-	print "Total line count: " + str(lineCount) + "\n"
+	responseRead = False
+	print "Total Line Count: " + str(lineCount) + "\n"
 	while breakReached == False:
 		if nextLineNumber <= lineCount:
 			for rawLine in range(lineCount):
 				line = ''
-				lineLength = len(scriptData[currentLineNumber])
 				lineData = scriptData[currentLineNumber].strip()
 				lineType = lineData[:3]
 				nextLine = ''
-				charName = str(lineData[3:].split(":")[0])
-				nextLineIsResponse = False
-				nextLineCharName = ''
 				nextLineType = ''
-				responseChosen = ''
-				responseLines = ''
-				if (currentLineNumber + 1) < lineCount:
-					nextLine += scriptData[currentLineNumber + 1].strip()
+				isResponse = False
+				charName = str(lineData[3:].split(":")[0])
+				if nextLineNumber < lineCount:
+					nextLine += scriptData[nextLineNumber].strip()
 					nextLineType += nextLine[:3]
-					if nextLineType != "---":
-						if nextLine[3:].split(":")[1] == "[R1]" and len(responseLines) == 0:
-							responseLines += nextLine + "\n"
-							responseLines += scriptData[nextLineNumber + 1].strip() + "\n"
-							responseLines += scriptData[nextLineNumber + 2].strip() + "\n"
-							responseLines += scriptData[nextLineNumber + 3].strip() + "\n"
-							nextLineIsResponse = True
-							print "\n" + "RESPONSE LINES : " + responseLines + "\n"
-				if lineType != "---" and playerResponded == False:
-					line += lineData.split(":")[2]
-					isResponseChecker = len(lineData[3:].split(":")[1])
-					isResponse = False
-					if isResponseChecker > 0:
+				if lineType != "---":
+					if len(lineData.split(":")[1]) > 0:
 						isResponse = True
-					if lineType == "[0]" and isResponse == False: #almost
-						beatTime = npc_line_reading(line, charName)
-						if beatTime <= 1 and nextLineIsResponse == True:
-							responseChosen += "[R1]"
-							playerResponded = True
-						elif 1 < beatTime <= 3 and nextLineIsResponse == True:
-							responseChosen += "[R2]"
-							playerResponded = True
-						elif 3 < beatTime <= 5 and nextLineIsResponse == True:
-							responseChosen += "[R3]"
-							playerResponded = True
-						elif 5 < beatTime and nextLineIsResponse == True:
-							responseChosen += "[R4]"
-							playerResponded = True
-					elif lineType == "[1]" and isResponse == False: #almost
-						beatTime = player_line_reading(line, charName)
-					elif lineType == "[2]" and isResponse == False:
-						beatTime = npc_strange_line_reading(line, charName)
-						if beatTime <= 1 and nextLineIsResponse == True:
-							responseChosen += "[R1]"
-							playerResponded = True
-						elif 1 < beatTime <= 3 and nextLineIsResponse == True:
-							responseChosen += "[R2]"
-							playerResponded = True
-						elif 3 < beatTime <= 5 and nextLineIsResponse == True:
-							responseChosen += "[R3]"
-							playerResponded = True
-						elif 5 < beatTime and nextLineIsResponse == True:
-							responseChosen += "[R4]"
-							playerResponded = True
+					if isResponse == False:
+						line += lineData.split(":")[2]
+					elif isResponse == True:
+						if lineData.split(":")[1] == responseChosen and len(responseChosen) > 0 and responseRead == False:
+							line += lineData.split(":")[2]
+							responseChosen = ''
+							responseRead = True
+						if lineData.split(":")[1] == "[R4]":
+							responseRead = False
+					if len(line) > 0:
+						if lineType == "[0]":
+							beatTime = npc_line_reading(line, charName)
+							if beatTime <= 1:
+								responseChosen += "[R1]"
+							elif 1 < beatTime <= 3:
+								responseChosen += "[R2]"
+							elif 3 < beatTime <= 5:
+								responseChosen += "[R3]"
+							elif 5 < beatTime:
+								responseChosen += "[R4]"
+						elif lineType == "[1]":
+							beatTime = player_line_reading(line, charName)
+						elif lineType == "[2]":
+							beatTime = npc_strange_line_reading(line, charName)
+							if beatTime <= 1:
+								responseChosen += "[R1]"
+							elif 1 < beatTime <= 3:
+								responseChosen += "[R2]"
+							elif 3 < beatTime <= 5:
+								responseChosen += "[R3]"
+							elif 5 < beatTime:
+								responseChosen += "[R4]"
 				elif lineType == "---":
 					breakReached = True
 					if scriptBreak(1) == 0:
 						breakReached = False
-				if responseChosen == "[R1]":
-					responseData = responseLines.split("\n")[0]
-					response = responseData.split(":")[2]
-					responseName = responseData[3:].split(":")[0]
-					responseLineType = responseData[:3]
-				elif responseChosen == "[R2]":
-					responseData = responseLines.split("\n")[1]
-					response = responseData.split(":")[2]
-					responseName = responseData[3:].split(":")[0]
-					responseLineType = responseData[:3]
-					
-				elif responseChosen == "[R3]":
-					responseData = responseLines.split("\n")[2]
-					response = responseData.split(":")[2]
-					responseName = responseData[3:].split(":")[0]
-					responseLineType = responseData[:3]
-				elif responseChosen == "[R4]":
-					responseData = responseLines.split("\n")[3]
-					response = responseData.split(":")[2]
-					responseName = str(responseData[3:].split(":")[0])
-					responseLineType = responseData[:3]
-				if playerResponded == True:
-					if responseLineType == "[0]":
-						npc_line_reading(response.strip(), responseName)
-						response = ''
-						if nextLineIsResponse == True:
-								playerResponded == True
-						else:
-							playerResponded = False
-					if responseLineType == "[1]":
-						player_line_reading(response.strip(), responseName)
-						response = ''
-						if nextLineIsResponse == True:
-								playerResponded == True
-						else:
-							playerResponded = False
-					if responseLineType ==  "[2]":
-						npc_strange_line_reading(response.strip(), responseName)
-						response = ''
-						if nextLineIsResponse == True:
-								playerResponded == True
-						else:
-							playerResponded = False
+				print "Current Line Number: " + str(currentLineNumber)
+				print "Character Speaking: " + charName
+				print "Line Type: " + lineType
+				print "Next Line Type: " + nextLineType
+				print "Response Chosen: " + responseChosen
+				print "Line: " + line
+				print "Beat Time: " + str(beatTime) + "\n"
 				currentLineNumber += 1
 				nextLineNumber += 1
-				print "CHARACTER SPEAKING: " + charName
-				print "CURRENT LINE NUMBER: " + str(currentLineNumber)
-				print "LINE TYPE: " + lineType
-				print "LINE: " + line
-				print "BEATTIME: " + str(beatTime)
-				print "NEXT LINE IS RESPONSE: " + str(nextLineIsResponse)
-				print "PLAYER RESPONDED: " + str(playerResponded)
-				print "RESPONSE CHOSEN: " + responseChosen
-				print "RESPONSE LINE: " + response
-				print "NEXT LINE: " + nextLine + "\n"
-				print "BREAK REACHED: " + str(breakReached) + "\n"
 		else:
 			break
