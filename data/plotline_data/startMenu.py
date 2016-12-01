@@ -47,16 +47,28 @@ class startMenu():
 		self.optionPosition = 0
 		defaultOpacity = 0
 		menuButtonXPos = 0
-		for item in functions:
+		self.functions =  functions
+		for item in self.functions:
 			print "do this do that."
 			print item
 			menuButton = menuItem(item, functions[item], defaultOpacity)
-			menuButton.setPosition(menuButtonXPos, 0)
+			menuButton.setPosition(menuButtonXPos, (display_height / 1.35))
+			menuButton.setOpacity(50)
 			screen.blit(menuButton.buttonSurface, menuButton.position)
 			menuButtonXPos += menuButton.buttonSurface.get_width()
 			
+	def hoverSelection(self, currentSelection):
+		self.currentSelection = currentSelection
+		if currentSelection == 0:
+			self.setOpacity(100)
+		elif currentSelection == 1:
+			self.setOpacity(100)
+		elif currentSelection == 2:
+			self.setOpacity(100)
 	def run(self):
 		while self.menuRunning == True:
+			clock = pygame.time.Clock()
+			clock.tick(60)
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					sys.exit()
@@ -74,21 +86,19 @@ class startMenu():
 							print "optionPosition: " + str(self.optionPosition)
 					# add change opacity function here
 					if self.optionPosition == 0:
-						self.menuButton.setOpacity(100)
 						if key[pygame.K_SPACE]:
 							startFunctions["new game"]()
 							self.menuRunning = False
 					elif self.optionPosition == 1:
-						self.menuButton.setOpacity(100)
+						self.hoverSelection(self.optionPosition)
 						if key[pygame.K_SPACE]:
 							startFunctions["load game"]()
 							self.menuRunning = False
 					elif self.optionPosition == 2:
-						self.menuButton.setOpacity(100)
 						if key[pygame.K_SPACE]:
 							startFunctions["exit game"]()
 							self.menuRunning = False
-
+			pygame.display.update()
 startFunctions = {"new game" : new_game, "load game" : load_game, "exit game" : exit_game}
 
 print startFunctions["new game"]
