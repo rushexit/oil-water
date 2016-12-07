@@ -1,22 +1,6 @@
-import pygame, sys, time, random
+import sys, time, random
 from pygame.locals import *
-
-# constant variables & pygame initialization
-black = (0, 0, 0)
-white = (255, 255, 255)
-red = (255, 0, 0)
-
-pygame.init()
-display_width = 800
-display_height = 500
-text_bg_width = 600
-text_bg_height = 200
-font = pygame.font.Font("freesansbold.ttf", 10)
-screen = pygame.display.set_mode((display_width, display_height))
-text_bg = pygame.Surface((text_bg_width, text_bg_height))
-text_bg = text_bg.convert_alpha()
-bgImage = pygame.image.load("spacetrees.png")
-pygame.display.set_caption('OIL//WATER')
+from data.constants import *
 
 # game loop to keep the game running.
 def gameLoop():
@@ -63,7 +47,7 @@ def npc_line_reading(text, name):
 	beatTime = 0
 	lineLength = len(text)
 	line += name + " : "
-	text_surface = font.render(line, True, black)
+	text_surface = lineFont.render(line, True, black)
 	text_rect = text_surface.get_rect()
 	screen.blit(text_surface, text_rect)
 	nameTextWaitTime = 250
@@ -73,7 +57,7 @@ def npc_line_reading(text, name):
 		if pygame.event.get(pygame.KEYDOWN):
 			keyPressed = True
 			line += "--"
-			text_surface = font.render(line, True, black)
+			text_surface = lineFont.render(line, True, black)
 			screen.blit(text_surface, text_rect)
 			pygame.display.update()
 			pygame.time.wait(50)
@@ -84,8 +68,8 @@ def npc_line_reading(text, name):
 			screen.blit(bgImage, (0, 0))
 			line += text[character]
 			currentCharacter += 1
-			text_surface = font.render(line, True, black)
-			characterCountSurface = font.render(str(currentCharacter), True, red)
+			text_surface = lineFont.render(line, True, black)
+			characterCountSurface = lineFont.render(str(currentCharacter), True, red)
 			text_rect = text_surface.get_rect()
 			screen.blit(text_surface, text_rect)
 			screen.blit(characterCountSurface, (100, 100))
@@ -110,7 +94,7 @@ def player_line_reading(text, name):
 	lineLength = len(text)
 	currentCharacter = 0
 	line += name + " : "
-	text_surface = font.render(line, True, black)
+	text_surface = lineFont.render(line, True, black)
 	screen.blit(text_surface, (100, 200))
 	pygame.display.update()
 	pygame.time.wait(250)
@@ -118,7 +102,7 @@ def player_line_reading(text, name):
 		screen.blit(bgImage, (0, 0))
 		line += text[character]
 		currentCharacter += 1
-		text_surface = font.render(line, True, black)
+		text_surface = lineFont.render(line, True, black)
 		screen.blit(text_surface, (100, 200))
 		pygame.display.update()
 		pygame.time.wait(50)
@@ -137,7 +121,7 @@ def npc_strange_line_reading(text, name):
 	heartStart = time.time()
 	beatTime = 0
 	line += name + " : "
-	text_surface = font.render(line, True, black)
+	text_surface = lineFont.render(line, True, black)
 	screen.blit(text_surface, (100, 200))
 	pygame.display.update()
 	pygame.time.wait(250)
@@ -145,7 +129,7 @@ def npc_strange_line_reading(text, name):
 		if pygame.event.get(pygame.KEYDOWN):
 			keyPressed = True
 			line += "--"
-			text_surface = font.render(line, True, black)
+			text_surface = lineFont.render(line, True, black)
 			screen.blit(text_surface, (100, 200))
 			pygame.display.update()
 			pygame.time.wait(50)
@@ -158,7 +142,7 @@ def npc_strange_line_reading(text, name):
 			random_char_index = random.randint(0,lineLength - 1)
 			line += '%s' % text[random_char_index]
 			currentCharacter += 1
-			text_surface = font.render(line, True, black)
+			text_surface = lineFont.render(line, True, black)
 			screen.blit(text_surface, (100, 200))
 			pygame.display.update()
 			pygame.time.wait(50)

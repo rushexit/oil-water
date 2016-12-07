@@ -1,27 +1,16 @@
 import pygame, sys
- 
-pygame.init()
-display_width = 800
-display_height = 500
-screen = pygame.display.set_mode((display_width, display_height))
-font = pygame.font.Font("freesansbold.ttf", 14)
-bgImage = pygame.image.load("spacetrees.png")
-pygame.display.set_caption('OIL//WATER')
-screen.blit(bgImage, (0, 0))
+from data.constants import *
 
-white = (255, 255, 255)
-red = (255, 0, 0)
-black = (0, 0, 0)
+screen.blit(bgImage, (0, 0))
 
 class menuItem():
 	def __init__(self, itemLabel, itemPosition, itemOpacity, itemID):
 		self.itemLabel = itemLabel
-		self.itemLabelSurface = font.render(self.itemLabel, True, white)
+		self.itemLabelSurface = menuLabelFont.render(self.itemLabel, True, white)
 		self.itemPosition = itemPosition
 		self.itemOpacity = itemOpacity
 		self.itemID = itemID
-		self.itemSurface = pygame.Surface((display_width / 3, 50)) #see about using len(menuItems) later.
-#		self.itemLabelRect = self.itemSurface.get_rect()
+		self.itemSurface = pygame.Surface((display_width / 3, 50)) #see about using len(menuItems) instead of "3" later.
 		pygame.Surface.convert_alpha(self.itemSurface)
 class gameMenu():
 	def __init__(self, menuItems):
