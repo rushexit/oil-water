@@ -14,3 +14,4 @@ bgImage = pygame.image.load("spacetrees.png")
 
 lineFont = pygame.font.Font("freesansbold.ttf", 10)
 menuLabelFont = pygame.font.Font("freesansbold.ttf", 14)
+introFont = pygame.font.Font("freesansbold.ttf", 20)

@@ -102,7 +102,4 @@ def exit_game():
 	pygame.quit()
 	sys.exit()
 	
-startFunctions = {"new game" : new_game, "load game" : load_game, "exit game" : exit_game}			
-
-gm = gameMenu(startFunctions)
-gm.run()
+startFunctions = {"new game" : new_game, "load game" : load_game, "exit game" : exit_game}
