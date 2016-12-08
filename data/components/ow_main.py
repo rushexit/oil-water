@@ -167,8 +167,8 @@ def scriptBreak(status):
 		if pygame.event.get(pygame.KEYDOWN):
 			return 0
 
-def scriptHandler(scriptFile):
-	script = open(scriptFile, 'r')
+def scriptHandler(state, scriptFile):
+	script = open(("data/states/" + state + "/" + scriptFile), 'r')
 	scriptData = script.readlines()
 	currentLineNumber = 0
 	nextLineNumber = currentLineNumber + 1

@@ -1,0 +1,14 @@
+[1]ODETTE:: So... Now what?
+[1]PANG:: Now we wait.
+[1]ODETTE:: What are we waiting for?
+[0]PANG:: You'll know when it happens.
+[0]ODETTE:[R1]: I don't have time for this, Pang!
+[0]ODETTE:[R2]: Why can't you just give me a straight answer?
+[0]ODETTE:[R3]: How long should we wait then?
+[0]ODETTE:[R4]: Wait. Did you hear that?
+[0]PANG:[R1]: Then make time, damn it! This is important.
+[0]PANG:[R2]: I prefer curvy answers.
+[0]PANG:[R3]: ... Silence is golden.
+[0]PANG:[R4]: I don't hear anything...
+[1]DELL:: It's me monkey-fighters!
+---
