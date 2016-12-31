@@ -11,7 +11,7 @@ def gameLoop():
 			sys.exit()
 		pygame.display.update()
 
-# heartTimer, general timing function for .
+# heartTimer, general timing function for events.
 def heartTimer(stopValue, timerEvent):
 	beatTime = 0
 	heartStart = time.time()
@@ -88,6 +88,7 @@ def npc_line_reading(text, name):
 			keyPressed = True
 	return beatTime
 
+# function that displays text, handles interrupt of line and returns beatTime.
 def player_line_reading(text, name):
 	line = ''
 	keyPressed = False
@@ -113,6 +114,7 @@ def player_line_reading(text, name):
 			keyPressed = True
 			break
 
+# function that displays text, handles interrupt of line and returns beatTime.
 def npc_strange_line_reading(text, name):
 	line = ''
 	lineLength = len(text)
@@ -159,6 +161,7 @@ def npc_strange_line_reading(text, name):
 			keyPressed = True
 	return beatTime
 
+# stops the script until a key is pressed.
 def scriptBreak(status):
 	screen.blit(bgImage, (0, 0))
 	pygame.display.update()
@@ -167,6 +170,7 @@ def scriptBreak(status):
 		if pygame.event.get(pygame.KEYDOWN):
 			return 0
 
+# takes in scriptFile from a given state directory and handles line switching.
 def scriptHandler(state, scriptFile):
 	script = open(("data/states/" + state + "/" + scriptFile), 'r')
 	scriptData = script.readlines()

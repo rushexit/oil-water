@@ -1,7 +1,7 @@
 import pygame, sys
 from data.constants import *
 
-screen.blit(bgImage, (0, 0))
+#screen.blit(bgImage, (0, 0))
 
 class menuItem():
 	def __init__(self, itemLabel, itemPosition, itemOpacity, itemID):
