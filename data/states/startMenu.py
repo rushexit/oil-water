@@ -91,7 +91,7 @@ class gameMenu():
 						if key[pygame.K_SPACE]:
 							startFunctions["exit game"]()
 							self.optionSelected = True
-			pygame.display.update()
+			convertSurface(screen)
 
 def new_game():
 	print "starting new game!"

@@ -71,3 +71,4 @@ def convertSurface(surface):
 	glEnd()
 #show the updated frame.
 	pygame.display.flip()
+	glDeleteTextures(1)

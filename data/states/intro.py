@@ -15,4 +15,3 @@ def runIntro():
 				sys.exit()
 			if event.type == pygame.KEYDOWN:
 				keyPressed = True
-#		pygame.display.flip()
