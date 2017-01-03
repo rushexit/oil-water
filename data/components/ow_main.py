@@ -51,7 +51,6 @@ def npc_line_reading(text, name):
 	text_rect = text_surface.get_rect()
 	screen.blit(text_surface, text_rect)
 	nameTextWaitTime = 250
-#	pygame.display.update()
 	convertSurface(screen)
 	pygame.time.wait(nameTextWaitTime)
 	for character in range(len(text)):
@@ -60,11 +59,9 @@ def npc_line_reading(text, name):
 			line += "--"
 			text_surface = lineFont.render(line, True, black)
 			screen.blit(text_surface, text_rect)
-#			pygame.display.update()
 			convertSurface(screen)
 			pygame.time.wait(50)
 			screen.blit(bgImage, (0, 0))
-#			pygame.display.update()
 			convertSurface(screen)
 			break
 		elif keyPressed == False:
@@ -79,7 +76,6 @@ def npc_line_reading(text, name):
 			if currentCharacter == (lineLength - 10):
 				heartStart = time.time()
 				print "Heart Timer auto-started!"
-#			pygame.display.update()
 			convertSurface(screen)
 			pygame.time.wait(50)
 	while keyPressed == False:
@@ -87,7 +83,6 @@ def npc_line_reading(text, name):
 			heartStop = time.time()
 			beatTime = heartStop - heartStart
 			screen.blit(bgImage, (0, 0))
-#			pygame.display.update()
 			convertSurface(screen)
 			print "Heart Timer stopped!"
 			keyPressed = True
@@ -102,7 +97,6 @@ def player_line_reading(text, name):
 	line += name + " : "
 	text_surface = lineFont.render(line, True, black)
 	screen.blit(text_surface, (100, 200))
-#	pygame.display.update()
 	convertSurface(screen)
 	pygame.time.wait(250)
 	for character in range(len(text)):
@@ -111,13 +105,11 @@ def player_line_reading(text, name):
 		currentCharacter += 1
 		text_surface = lineFont.render(line, True, black)
 		screen.blit(text_surface, (100, 200))
-#		pygame.display.update()
 		convertSurface(screen)
 		pygame.time.wait(50)
 	while keyPressed == False:
 		if pygame.event.get(pygame.KEYDOWN):
 			screen.blit(bgImage, (0, 0))
-#			pygame.display.update()
 			convertSurface(screen)
 			keyPressed = True
 			break
@@ -133,7 +125,7 @@ def npc_strange_line_reading(text, name):
 	line += name + " : "
 	text_surface = lineFont.render(line, True, black)
 	screen.blit(text_surface, (100, 200))
-	pygame.display.update()
+	convertSurface(screen)
 	pygame.time.wait(250)
 	for character in range(len(text)):
 		if pygame.event.get(pygame.KEYDOWN):
@@ -141,10 +133,10 @@ def npc_strange_line_reading(text, name):
 			line += "--"
 			text_surface = lineFont.render(line, True, black)
 			screen.blit(text_surface, (100, 200))
-			pygame.display.update()
+			convertSurface(screen)
 			pygame.time.wait(50)
 			screen.blit(bgImage, (0, 0))
-			pygame.display.update()
+			convertSurface(screen)
 			print "Line interrupted!"
 			break
 		elif keyPressed == False:
@@ -154,7 +146,7 @@ def npc_strange_line_reading(text, name):
 			currentCharacter += 1
 			text_surface = lineFont.render(line, True, black)
 			screen.blit(text_surface, (100, 200))
-			pygame.display.update()
+			convertSurface(screen)
 			pygame.time.wait(50)
 			if currentCharacter == lineLength - 10:
 				heartStart = time.time()
@@ -164,7 +156,7 @@ def npc_strange_line_reading(text, name):
 			heartStop = time.time()
 			beatTime = heartStop - heartStart
 			screen.blit(bgImage, (0, 0))
-			pygame.display.update()
+			convertSurface(screen)
 			print "Heart Timer stopped!"
 			keyPressed = True
 	return beatTime
@@ -172,7 +164,6 @@ def npc_strange_line_reading(text, name):
 # stops the script until a key is pressed.
 def scriptBreak(status):
 	screen.blit(bgImage, (0, 0))
-#	pygame.display.update()
 	convertSurface(screen)
 	print "SCRIPTBREAK FUNCTION RUN"
 	while status == 1:

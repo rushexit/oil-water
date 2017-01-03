@@ -1,7 +1,4 @@
 import sys, pygame, data.components.ow_main, OpenGL, data.states.startMenu, data.states.intro
-from OpenGL.GL import *
-from OpenGL.GLU import *
-from OpenGL.GLUT import *
 
 
 data.states.intro.runIntro()

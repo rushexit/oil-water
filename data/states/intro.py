@@ -1,6 +1,9 @@
 import sys
 from data.constants import *
 
+def testCube():
+	pass
+
 def runIntro():
 	print "run intro."
 	keyPressed = False
