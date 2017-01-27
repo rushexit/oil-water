@@ -9,9 +9,9 @@ def gameLoop():
 		if pygame.event.get(pygame.QUIT):
 			pygame.quit()
 			sys.exit()
-		pygame.display.flip()
+		pygame.display.update()
 
-# heartTimer, general timing function for events.
+# heartTimer, general timing function for .
 def heartTimer(stopValue, timerEvent):
 	beatTime = 0
 	heartStart = time.time()
@@ -51,18 +51,19 @@ def npc_line_reading(text, name):
 	text_rect = text_surface.get_rect()
 	screen.blit(text_surface, text_rect)
 	nameTextWaitTime = 250
-	convertSurface(screen)
+	pygame.display.update()
 	pygame.time.wait(nameTextWaitTime)
 	for character in range(len(text)):
 		if pygame.event.get(pygame.KEYDOWN):
 			keyPressed = True
 			line += "--"
 			text_surface = lineFont.render(line, True, black)
+			screen.blit(bgImage, (0, 0))
 			screen.blit(text_surface, text_rect)
-			convertSurface(screen)
+			pygame.display.update()
 			pygame.time.wait(50)
 			screen.blit(bgImage, (0, 0))
-			convertSurface(screen)
+			pygame.display.update()
 			break
 		elif keyPressed == False:
 			screen.blit(bgImage, (0, 0))
@@ -76,19 +77,18 @@ def npc_line_reading(text, name):
 			if currentCharacter == (lineLength - 10):
 				heartStart = time.time()
 				print "Heart Timer auto-started!"
-			convertSurface(screen)
+			pygame.display.update()
 			pygame.time.wait(50)
 	while keyPressed == False:
 		if pygame.event.get(pygame.KEYDOWN):
 			heartStop = time.time()
 			beatTime = heartStop - heartStart
 			screen.blit(bgImage, (0, 0))
-			convertSurface(screen)
+			pygame.display.update()
 			print "Heart Timer stopped!"
 			keyPressed = True
 	return beatTime
 
-# function that displays text, handles interrupt of line and returns beatTime.
 def player_line_reading(text, name):
 	line = ''
 	keyPressed = False
@@ -97,7 +97,7 @@ def player_line_reading(text, name):
 	line += name + " : "
 	text_surface = lineFont.render(line, True, black)
 	screen.blit(text_surface, (100, 200))
-	convertSurface(screen)
+	pygame.display.update()
 	pygame.time.wait(250)
 	for character in range(len(text)):
 		screen.blit(bgImage, (0, 0))
@@ -105,16 +105,15 @@ def player_line_reading(text, name):
 		currentCharacter += 1
 		text_surface = lineFont.render(line, True, black)
 		screen.blit(text_surface, (100, 200))
-		convertSurface(screen)
+		pygame.display.update()
 		pygame.time.wait(50)
 	while keyPressed == False:
 		if pygame.event.get(pygame.KEYDOWN):
 			screen.blit(bgImage, (0, 0))
-			convertSurface(screen)
+			pygame.display.update()
 			keyPressed = True
 			break
 
-# function that displays text, handles interrupt of line and returns beatTime.
 def npc_strange_line_reading(text, name):
 	line = ''
 	lineLength = len(text)
@@ -125,7 +124,7 @@ def npc_strange_line_reading(text, name):
 	line += name + " : "
 	text_surface = lineFont.render(line, True, black)
 	screen.blit(text_surface, (100, 200))
-	convertSurface(screen)
+	pygame.display.update()
 	pygame.time.wait(250)
 	for character in range(len(text)):
 		if pygame.event.get(pygame.KEYDOWN):
@@ -133,10 +132,10 @@ def npc_strange_line_reading(text, name):
 			line += "--"
 			text_surface = lineFont.render(line, True, black)
 			screen.blit(text_surface, (100, 200))
-			convertSurface(screen)
+			pygame.display.update()
 			pygame.time.wait(50)
 			screen.blit(bgImage, (0, 0))
-			convertSurface(screen)
+			pygame.display.update()
 			print "Line interrupted!"
 			break
 		elif keyPressed == False:
@@ -146,7 +145,7 @@ def npc_strange_line_reading(text, name):
 			currentCharacter += 1
 			text_surface = lineFont.render(line, True, black)
 			screen.blit(text_surface, (100, 200))
-			convertSurface(screen)
+			pygame.display.update()
 			pygame.time.wait(50)
 			if currentCharacter == lineLength - 10:
 				heartStart = time.time()
@@ -156,21 +155,19 @@ def npc_strange_line_reading(text, name):
 			heartStop = time.time()
 			beatTime = heartStop - heartStart
 			screen.blit(bgImage, (0, 0))
-			convertSurface(screen)
+			pygame.display.update()
 			print "Heart Timer stopped!"
 			keyPressed = True
 	return beatTime
 
-# stops the script until a key is pressed.
 def scriptBreak(status):
 	screen.blit(bgImage, (0, 0))
-	convertSurface(screen)
+	pygame.display.update()
 	print "SCRIPTBREAK FUNCTION RUN"
 	while status == 1:
 		if pygame.event.get(pygame.KEYDOWN):
 			return 0
 
-# takes in scriptFile from a given state directory and handles line switching.
 def scriptHandler(state, scriptFile):
 	script = open(("data/states/" + state + "/" + scriptFile), 'r')
 	scriptData = script.readlines()

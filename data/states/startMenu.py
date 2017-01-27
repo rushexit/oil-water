@@ -1,7 +1,7 @@
 import pygame, sys
 from data.constants import *
 
-#screen.blit(bgImage, (0, 0))
+screen.blit(bgImage, (0, 0))
 
 class menuItem():
 	def __init__(self, itemLabel, itemPosition, itemOpacity, itemID):
@@ -91,7 +91,7 @@ class gameMenu():
 						if key[pygame.K_SPACE]:
 							startFunctions["exit game"]()
 							self.optionSelected = True
-			convertSurface(screen)
+			pygame.display.update()
 
 def new_game():
 	print "starting new game!"
